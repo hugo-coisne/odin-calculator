@@ -1,0 +1,54 @@
+* {
+    border-radius: 10px;
+    border-style:solid;
+    border-color:white;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+#calculator {
+    width: 70%;
+    height: 1000px;
+    margin: auto;
+    background-color: orange;
+    margin-top: 5%;
+    padding-top: 5%;
+    border-color:black;
+}
+
+#display {
+    height: 110px;
+    background-color: black;
+    width: 90%;
+    margin: auto;
+    color: white;
+    text-align: right;
+    font-size: 110px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border-style:solid;
+}
+
+#keys {
+    border-style: none;
+    width: 90%;
+    height: 80%;
+    margin: auto;
+    margin-top: 5%;
+    display: flex;
+}
+
+#digits {
+    width: 20%;
+    aspect-ratio: 1/1;
+    flex: 3;
+}
+
+#operators {
+    width: 20%;
+    aspect-ratio: 1/1;
+    flex: 1;
+}
