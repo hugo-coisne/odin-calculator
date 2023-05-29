@@ -74,5 +74,13 @@ body {
     display:flex;
     justify-content: center;
     align-items: center;
+}
 
+#clear {
+    flex:2;
+}
+
+
+.row[key="0"]{
+    gap: 14px;
 }

@@ -46,17 +46,18 @@ operators.id = "operators";
 for (let j = 9; j >= 0; j -= 3) {
     const row = document.createElement("div");
     row.classList = "row";
+    row.setAttribute("key",j);
     for (let i = 0; i <= 2; i++) {
         if (j - i >= 0) {
             const digit = document.createElement('div');
             digit.innerText = j - i;
             digit.classList = `key`;
-            digit.id = j - i;
+            digit.setAttribute("key",j-i);
             row.appendChild(digit);
         }
     }
     if(row.childElementCount==1){
-        const digit = document.createElement('div');
+        let digit = document.createElement('div');
         digit.classList = `key`;
         digit.id = "clear";
         digit.innerText = "Clear";
