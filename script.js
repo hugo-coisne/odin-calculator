@@ -25,6 +25,13 @@ function operate(a, b, op) {
     if (op == "/") return divide(a, b);
 }
 
+function addPressed(e) {
+    this.classList.add("pressed");
+}
+function removePressed(e) {
+    this.classList.remove("pressed");
+}
+
 const body = document.querySelector("body");
 
 const calculator = document.createElement("div");
@@ -82,11 +89,6 @@ body.appendChild(calculator);
 
 const allKeys = document.querySelectorAll(".key");
 allKeys.forEach(k => {
-    k.addEventListener('click', function addPressed(e) {
-        this.classList.add("pressed");
-    }
-    );
-    k.addEventListener('transitionend', function removePressed(e) {
-        this.classList.remove("pressed");
-    });
+    k.addEventListener('click', addPressed(e));
+    k.addEventListener('transitionend', removePressed(e));
 });
