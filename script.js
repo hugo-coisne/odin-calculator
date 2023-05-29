@@ -14,9 +14,9 @@ function divide(a, b) {
     return a / b;
 }
 
-let n;
-let m;
-let o;
+let n = 0;
+let m = 0;
+let o = "";
 
 function operate(a, b, op) {
     if (op == "+") return add(a, b);
@@ -46,17 +46,17 @@ operators.id = "operators";
 for (let j = 9; j >= 0; j -= 3) {//generate digits
     const row = document.createElement("div");
     row.classList = "row";
-    row.setAttribute("key",j);
+    row.setAttribute("key", j);
     for (let i = 0; i <= 2; i++) {
         if (j - i >= 0) {
             const digit = document.createElement('div');
             digit.innerText = j - i;
             digit.classList = `key`;
-            digit.setAttribute("key",j-i);
+            digit.setAttribute("key", j - i);
             row.appendChild(digit);
         }
     }
-    if(row.childElementCount==1){
+    if (row.childElementCount == 1) {
         let digit = document.createElement('div');
         digit.classList = `key`;
         digit.id = "clear";
@@ -66,15 +66,27 @@ for (let j = 9; j >= 0; j -= 3) {//generate digits
     digits.appendChild(row);
 }
 
-for (el in "+-*/=".split("")){
+for (el in "+-*/=".split("")) {//generate operators
     const op = document.createElement("div");
     op.classList = "key";
     op.innerText = "+-*/="[el];
     operators.appendChild(op);
 }
 
+
 keys.appendChild(digits);
 keys.appendChild(operators);
 calculator.appendChild(display);
 calculator.appendChild(keys);
 body.appendChild(calculator);
+
+const allKeys = document.querySelectorAll(".key");
+allKeys.forEach(k => {
+    k.addEventListener('click', function addPressed(e) {
+        this.classList.add("pressed");
+    }
+    );
+    k.addEventListener('transitionend', function removePressed(e) {
+        this.classList.remove("pressed");
+    });
+});

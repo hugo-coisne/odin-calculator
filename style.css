@@ -78,6 +78,12 @@ body {
     align-items: center;
 }
 
+.pressed {
+    color:black;
+    transition:all 0.07s;
+    background-color: red;
+}
+
 #clear {
     flex:2;
 }
