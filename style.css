@@ -3,7 +3,7 @@
     border-style: solid;
     border-color: white;
 }
-html, body, #digits, #keys, .row {
+html, body, #digits, #keys, .row, #operators{
     border-style:none;
 }
 body {
@@ -57,7 +57,9 @@ body {
     width: 20%;
     aspect-ratio: 1/1;
     flex: 1;
-    
+    display:flex;
+    flex-direction:column;
+    gap:5px;
 }
 
 .row {
@@ -82,5 +84,5 @@ body {
 
 
 .row[key="0"]{
-    gap: 14px;
+    gap: 15px;
 }

@@ -43,7 +43,7 @@ digits.id = "digits";
 const operators = document.createElement('div');
 operators.id = "operators";
 
-for (let j = 9; j >= 0; j -= 3) {
+for (let j = 9; j >= 0; j -= 3) {//generate digits
     const row = document.createElement("div");
     row.classList = "row";
     row.setAttribute("key",j);
@@ -66,6 +66,12 @@ for (let j = 9; j >= 0; j -= 3) {
     digits.appendChild(row);
 }
 
+for (el in "+-*/=".split("")){
+    const op = document.createElement("div");
+    op.classList = "key";
+    op.innerText = "+-*/="[el];
+    operators.appendChild(op);
+}
 
 keys.appendChild(digits);
 keys.appendChild(operators);
