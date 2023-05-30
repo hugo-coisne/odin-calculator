@@ -26,69 +26,72 @@ function operate(a, b, op) {
 }
 
 function addPressed(e) {
-    this.classList.add("pressed");
+    e.classList.add("pressed");
 }
 function removePressed(e) {
-    this.classList.remove("pressed");
+    e.classList.remove("pressed");
 }
 
-const body = document.querySelector("body");
+function calculator() {
+    const body = document.querySelector("body");
 
-const calculator = document.createElement("div");
-calculator.id = "calculator";
+    const calculator = document.createElement("div");
+    calculator.id = "calculator";
 
-const display = document.createElement("div");
-display.id = "display";
-display.innerText = "1234567890";
+    const display = document.createElement("div");
+    display.id = "display";
+    display.innerText = "1234567890";
 
-const keys = document.createElement("div");
-keys.id = "keys";
+    const keys = document.createElement("div");
+    keys.id = "keys";
 
-const digits = document.createElement("div");
-digits.id = "digits";
+    const digits = document.createElement("div");
+    digits.id = "digits";
 
-const operators = document.createElement('div');
-operators.id = "operators";
+    const operators = document.createElement('div');
+    operators.id = "operators";
 
-for (let j = 9; j >= 0; j -= 3) {//generate digits
-    const row = document.createElement("div");
-    row.classList = "row";
-    row.setAttribute("key", j);
-    for (let i = 0; i <= 2; i++) {
-        if (j - i >= 0) {
-            const digit = document.createElement('div');
-            digit.innerText = j - i;
+    for (let j = 9; j >= 0; j -= 3) {//generate digits
+        const row = document.createElement("div");
+        row.classList = "row";
+        row.setAttribute("key", j);
+        for (let i = 0; i <= 2; i++) {
+            if (j - i >= 0) {
+                const digit = document.createElement('div');
+                digit.innerText = j - i;
+                digit.classList = `key`;
+                digit.setAttribute("key", j - i);
+                row.appendChild(digit);
+            }
+        }
+        if (row.childElementCount == 1) {
+            let digit = document.createElement('div');
             digit.classList = `key`;
-            digit.setAttribute("key", j - i);
+            digit.id = "clear";
+            digit.innerText = "Clear";
             row.appendChild(digit);
         }
+        digits.appendChild(row);
     }
-    if (row.childElementCount == 1) {
-        let digit = document.createElement('div');
-        digit.classList = `key`;
-        digit.id = "clear";
-        digit.innerText = "Clear";
-        row.appendChild(digit);
+
+    for (el in "+-*/=".split("")) {//generate operators
+        const op = document.createElement("div");
+        op.classList = "key";
+        op.innerText = "+-*/="[el];
+        operators.appendChild(op);
     }
-    digits.appendChild(row);
+
+
+    keys.appendChild(digits);
+    keys.appendChild(operators);
+    calculator.appendChild(display);
+    calculator.appendChild(keys);
+    body.appendChild(calculator);
 }
-
-for (el in "+-*/=".split("")) {//generate operators
-    const op = document.createElement("div");
-    op.classList = "key";
-    op.innerText = "+-*/="[el];
-    operators.appendChild(op);
-}
-
-
-keys.appendChild(digits);
-keys.appendChild(operators);
-calculator.appendChild(display);
-calculator.appendChild(keys);
-body.appendChild(calculator);
+calculator();
 
 const allKeys = document.querySelectorAll(".key");
 allKeys.forEach(k => {
-    k.addEventListener('click', addPressed(e));
-    k.addEventListener('transitionend', removePressed(e));
+    k.addEventListener('click', e => addPressed(e.target));
+    k.addEventListener('transitionend', e => removePressed(e.target));
 });
