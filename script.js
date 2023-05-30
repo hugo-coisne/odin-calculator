@@ -69,6 +69,10 @@ function calculator() {
             digit.classList = `key`;
             digit.id = "clear";
             digit.innerText = "Clear";
+            digit.addEventListener('click',(e)=>{
+                o="";
+                display.innerText = o; //clear event
+            });
             row.appendChild(digit);
         }
         digits.appendChild(row);
@@ -94,4 +98,11 @@ const allKeys = document.querySelectorAll(".key");
 allKeys.forEach(k => {
     k.addEventListener('click', e => addPressed(e.target));
     k.addEventListener('transitionend', e => removePressed(e.target));
-});
+}); //key-click animation
+
+const numbers = document.querySelectorAll(".key[key]");
+console.log(Array.from(numbers).map(el=>el.innerText));
+numbers.forEach(key => key.addEventListener('click', (e)=>{
+    o+=e.target.innerText;
+    display.innerText = o;
+})); //key-click changes display
